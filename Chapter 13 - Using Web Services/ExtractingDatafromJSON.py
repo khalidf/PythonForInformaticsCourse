@@ -16,35 +16,28 @@ input = '''
   ]
 }'''
 
-#address = raw_input('Enter location: ')
-#http://python-data.dr-chuck.net/comments_260259.json
-serviceurl = 'http://python-data.dr-chuck.net/comments_260259.json'#address
+# Note this is a dictionary/list/dictionary! So need to code accordingly..
 
+serviceurl = 'http://python-data.dr-chuck.net/comments_260259.json'
 
 uh = urllib.urlopen(serviceurl)
 data = uh.read()
 print 'Retrieved',len(data),'characters'
 
-info = json.loads(input)
-print info
+info = json.loads(data)
+print type(info) # dict
 
-#sum = 0
-#counter = 0
+# extract from the dictionary the value comments which is a list of dictionaries
+comments = info['comments']
+print type(comments) # list
 
-for k in info
-print info['comments'][0]['count']
+# now loop round comments like a regular list, with each element a dictionary
 
-#for item in info:
-   # print item
-    #count = item['comments']
-   # print 'counter:', counter
-#sum = sum + int(count)
-#    counter = counter + 1
+sum = 0
+counter = 0
 
-#print 'count:', counter
-#print 'sum:', sum
+for item in info['comments']:
+	#print k['count']
+	sum = sum + int(item['count'])
 
-#for item in info:
-#    print 'Name', item['name']
-#    print 'Id', item['id']
-#    print 'Attribute', item['x']
+print sum
